@@ -1,0 +1,11 @@
+{
+    "env": "development",
+    "development": {
+        "postgres": {
+            "connectionString": "postgres://rkkxggsewmkubb:4d4dbade31fb8330f5f02599874e99ec945b8b064666a6c97fffd82008dfa262@ec2-52-45-73-150.compute-1.amazonaws.com:5432/d6h8g26rjam3do",
+            "ssl":{
+                "rejectUnauthorized": false
+            }
+        }
+    }
+}
