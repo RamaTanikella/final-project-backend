@@ -19,7 +19,10 @@
   "homepage": "https://github.com/govindat415/chitter-backend#readme",
   "dependencies": {
     "bluebird": "^3.7.2",
-    "express": "^4.17.1",
-    "pg": "^8.5.1"
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.19.1"
   }
 }
