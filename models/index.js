@@ -20,5 +20,7 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 db.listings = require("./listings.model.js")(sequelize, Sequelize);
 db.images = require("./images.model.js")(sequelize, Sequelize);
+db.reservations = require("./reservations.model.js")(sequelize, Sequelize);
 db.listings.hasMany(db.images)
+db.listings.hasMany(db.reservations)
 module.exports = db;

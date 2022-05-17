@@ -43,14 +43,14 @@ exports.findAll = (req, res) => {
 // Find a single Tutorial with an id
 exports.delete = (req, res) => {
     const listing_id = req.params.listing_id;
-    const image_url = req.params.image_url;
+    // const image_url = req.params.image_url;
     Images.destroy({
-      where: { listing_id: listing_id, image_url: image_url }
+      where: { listing_id: listing_id }
     })
     .then(num => {
-        if (num == 1) {
+        if (num >= 1) {
             res.send({
-                message: "Image was deleted successfully!"
+                message: "Images for listing were deleted successfully!"
             });
         } else {
             res.send({
