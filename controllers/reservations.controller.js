@@ -9,20 +9,20 @@ exports.create = (req, res) => {
         });
         return;
     }
-    const listing = {
+    const reservation = {
         listing_id: req.body.listing_id,
         in_date: req.body.in_date,
         email: req.body.email,
         guest_name: req.body.guest_name
     };
-    Reservations.create(listing)
+    Reservations.create(reservation)
     .then(data => {
         res.send(data);
     })
     .catch(err => {
         res.status(500).send({
         message:
-            err.message || "Some error occurred while creating the listing."
+            err.message || "Some error occurred while creating the reservation."
         });
     });
     
@@ -38,14 +38,15 @@ exports.findAll = (req, res) => {
       .catch(err => {
         res.status(500).send({
           message:
-            err.message || "Some error occurred while retrieving listings."
+            err.message || "Some error occurred while retrieving reservations."
         });
     });
 };
 // Find a single Tutorial with an id
 exports.findOne = (req, res) => {
     const listing_id = req.params.listing_id;
-    Reservations.findByPk(id)
+    const in_date = req.params.in_date;
+    Reservations.findByPk(listing_id, in_date)
     .then(data => {
         if (data) {
             res.send(data);
@@ -64,8 +65,9 @@ exports.findOne = (req, res) => {
 // Update a Tutorial by the id in the request
 exports.update = (req, res) => {
     const listing_id = req.params.listing_id;
+    const in_date = req.params.in_date;
     Reservations.update(req.body, {
-      where: { listing_id: listing_id }
+      where: { listing_id: listing_id, in_date: in_date }
     })
     .then(num => {
         if (num == 1) {
@@ -87,8 +89,9 @@ exports.update = (req, res) => {
 // Delete a Tutorial with the specified id in the request
 exports.delete = (req, res) => {
     const listing_id = req.params.listing_id;
+    const in_date = req.params.in_date;
     Reservations.destroy({
-      where: { listing_id: listing_id }
+      where: { listing_id: listing_id, in_date: in_date }
     })
     .then(num => {
         if (num == 1) {
