@@ -26,6 +26,24 @@ exports.create = (req, res) => {
     
 };
 // Retrieve all Tutorials from the database.
+exports.findWhere = (req, res) => {
+    const listing_id = req.params.listing_id;
+    Images.findAll({where: {listing_id: listing_id}})
+    .then(data => {
+        if (data) {
+            res.send(data);
+        } else {
+            res.status(404).send({
+            message: `Cannot find Tutorial with id=${listing_id}.`
+            });
+        }
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: "Error retrieving Tutorial with id=" + listing_id
+        });
+    });
+};
 exports.findAll = (req, res) => {
     // const title = req.query.title;
     // var condition = title ? { title: { [Op.iLike]: `%${title}%` } } : null;

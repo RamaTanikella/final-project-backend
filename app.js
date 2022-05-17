@@ -11,9 +11,10 @@ require("./api/listings.routes")(app);
 require("./api/images.routes")(app);
 require("./api/reservations.routes")(app);
 const db = require("./models");
-db.sequelize.sync({ force: true }).then(() => {
-    console.log("Drop and re-sync db.");
-});
+// db.sequelize.sync({ force: true }).then(() => {
+//     console.log("Drop and re-sync db.");
+// });
+db.sequelize.sync();
 
 // configRoutes(app);
 
