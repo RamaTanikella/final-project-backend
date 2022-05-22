@@ -12,7 +12,8 @@ exports.create = (req, res) => {
     const listing = {
         listing_id: req.body.listing_id,
         listing_name: req.body.listing_name,
-        listing_description: req.body.listing_description
+        listing_description: req.body.listing_description,
+        price: req.body.price
     };
     Listings.create(listing)
     .then(data => {

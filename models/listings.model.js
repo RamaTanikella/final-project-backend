@@ -10,6 +10,10 @@ module.exports = (sequelize, Sequelize) => {
       },
       listing_description: {
         type: Sequelize.STRING
+      },
+      price:{
+        type: Sequelize.FLOAT,
+        allowNull: false
       }
     });
     return Listing;
