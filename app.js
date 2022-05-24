@@ -1,8 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-// const configRoutes = require('./routes')
-require('dotenv').config();
-
+// const configRoutes = require('./routes');
 const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN)
 const app = express();
 
