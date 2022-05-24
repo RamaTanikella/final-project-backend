@@ -3,7 +3,10 @@ const Reservations = db.reservations;
 const Op = db.Sequelize.Op;
 // Create and Save a new Reservation
 exports.create = (req, res) => {
+    console.log(req.body)
     if (!req.body.listing_id || !req.body.in_date) {
+        console.log(req.body.listing_id)
+        console.log(req.body.in_date)
         res.status(400).send({
             message: "Content can not be empty!"
         });
