@@ -32,7 +32,7 @@ app.post("/sendMessage", async (req, res) => {
         })
     }).catch((e) => {
         res.status(500).send({
-            status: "Bad"
+            status: e
         })
     })
 })
