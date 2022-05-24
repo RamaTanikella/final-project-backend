@@ -7,11 +7,15 @@ var corsOptions = {
     origin: 'http://localhost:3001',
     optionsSuccessStatus: 200 // For legacy browser support
 }
-
+let allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Headers', "*");
+    next();
+}
+app.use(allowCrossDomain);
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-
 
 require("./api/listings.routes")(app);
 require("./api/images.routes")(app);
