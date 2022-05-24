@@ -6,6 +6,8 @@ module.exports = app => {
     // Retrieve all reservations
     router.get("/", reservations.findAll);
     // Retrieve a single Tutorial with id
+    router.get("/:listing_id", reservations.findByID);
+
     router.get("/:listing_id/:in_date", reservations.findOne);
     // Update a Tutorial with id
     router.put("/:listing_id/:in_date", reservations.update);

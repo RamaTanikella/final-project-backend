@@ -1,7 +1,7 @@
 const db = require("../models");
 const Reservations = db.reservations;
 const Op = db.Sequelize.Op;
-// Create and Save a new Tutorial
+// Create and Save a new Reservation
 exports.create = (req, res) => {
     if (!req.body.listing_id || !req.body.in_date) {
         res.status(400).send({
@@ -27,7 +27,7 @@ exports.create = (req, res) => {
     });
     
 };
-// Retrieve all Tutorials from the database.
+// Retrieve all Reservations from the database.
 exports.findAll = (req, res) => {
     // const title = req.query.title;
     // var condition = title ? { title: { [Op.iLike]: `%${title}%` } } : null;
@@ -42,7 +42,7 @@ exports.findAll = (req, res) => {
         });
     });
 };
-// Find a single Tutorial with an id
+// Find a single Reservation with an id
 exports.findOne = (req, res) => {
     const listing_id = req.params.listing_id;
     const in_date = req.params.in_date;
@@ -52,17 +52,17 @@ exports.findOne = (req, res) => {
             res.send(data);
         } else {
             res.status(404).send({
-            message: `Cannot find Tutorial with id=${listing_id}.`
+            message: `Cannot find Reservation with id=${listing_id}.`
             });
         }
     })
     .catch(err => {
         res.status(500).send({
-            message: "Error retrieving Tutorial with id=" + listing_id
+            message: "Error retrieving Reservation with id=" + listing_id
         });
     });
 };
-// Update a Tutorial by the id in the request
+// Update a Reservation by the id in the request
 exports.update = (req, res) => {
     const listing_id = req.params.listing_id;
     const in_date = req.params.in_date;
@@ -86,7 +86,7 @@ exports.update = (req, res) => {
         });
     });
 };
-// Delete a Tutorial with the specified id in the request
+// Delete a Reservation with the specified id in the request
 exports.delete = (req, res) => {
     const listing_id = req.params.listing_id;
     const in_date = req.params.in_date;
@@ -110,7 +110,7 @@ exports.delete = (req, res) => {
         });
     });
 };
-// Delete all Tutorials from the database.
+// Delete all Reservations from the database.
 exports.deleteAll = (req, res) => {
     Reservations.destroy({
         where: {},
@@ -123,6 +123,25 @@ exports.deleteAll = (req, res) => {
         res.status(500).send({
         message:
             err.message || "Some error occurred while removing all listings."
+        });
+    });
+};
+
+exports.findByID = (req, res) => {
+    const listing_id = req.params.listing_id;
+    Reservations.findAll({where: {listing_id: listing_id}})
+    .then(data => {
+        if (data) {
+            res.send(data);
+        } else {
+            res.status(404).send({
+            message: `Cannot find Reservation with id=${listing_id}.`
+            });
+        }
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: "Error retrieving Reservation with id=" + listing_id
         });
     });
 };
