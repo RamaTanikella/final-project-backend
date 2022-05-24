@@ -4,7 +4,7 @@ const cors = require("cors");
 const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN)
 const app = express();
 var corsOptions = {
-    origin: 'https://final-project-rama.herokuapp.com',
+    origin: 'http://localhost:3001',
     optionsSuccessStatus: 200 // For legacy browser support
 }
 
