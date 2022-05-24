@@ -3,16 +3,16 @@ const cors = require("cors");
 // const configRoutes = require('./routes');
 const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN)
 const app = express();
+var corsOptions = {
+    origin: 'https://final-project-rama.herokuapp.com',
+    optionsSuccessStatus: 200 // For legacy browser support
+}
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-let allowCrossDomain = function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', "*");
-    res.header('Access-Control-Allow-Headers', "*");
-    next();
-}
-app.use(allowCrossDomain);
+
+
 require("./api/listings.routes")(app);
 require("./api/images.routes")(app);
 require("./api/reservations.routes")(app);
