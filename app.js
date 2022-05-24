@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 // const configRoutes = require('./routes');
-// const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN)
+const client = require('twilio')("AC024a9a785d29ed6e6a369e71a37715a9", "465558879056601bba6fd398b9409b15")
 const app = express();
 
 app.use(function(req, res, next) {
@@ -20,22 +20,22 @@ require("./api/listings.routes")(app);
 require("./api/images.routes")(app);
 require("./api/reservations.routes")(app);
 
-// app.post("/sendMessage", async (req, res) => {
-//     client.messages.create({
-//         from: process.env.TWILIO_PHONE_NUMBER,
-//         to: "+1"+req.body.phone,
-//         body: req.body.message
+app.post("/sendMessage", async (req, res) => {
+    client.messages.create({
+        from: "+19403083055",
+        to: "+1"+req.body.phone,
+        body: req.body.message
 
-//     }).then(() => {
-//         res.send({
-//             status: "Good"
-//         })
-//     }).catch((e) => {
-//         res.status(500).send({
-//             status: "Bad"
-//         })
-//     })
-// })
+    }).then(() => {
+        res.send({
+            status: "Good"
+        })
+    }).catch((e) => {
+        res.status(500).send({
+            status: "Bad"
+        })
+    })
+})
 const db = require("./models");
 // db.sequelize.sync({ force: true }).then(() => {
 //     console.log("Drop and re-sync db.");
